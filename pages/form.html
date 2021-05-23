@@ -19,6 +19,7 @@
         <div>
             <label for="pwd">Password input type:</label>
             <input type="password" id="pwd" name="pwd">
+            <error-output class="pwd-error" for="pwd"></error-output>
         </div>
         <div>
             <label for="email">Email input type:</label>
@@ -86,6 +87,16 @@
                 telError.textContent = "";
             else
                 telError.textContent = "Contact number is Incorrect";              //print error message if regex test is failed
+        });
+
+        const pwd = document.querySelector('#pwd');                             //UC-4 Validation for password
+        const pwdError = document.querySelector('.pwd-error');
+        pwd.addEventListener('input',function() {
+            let pwdRegex = RegExp('(?=.*\d)(?=.*[a-z]).{8,}');                  //Rule1 – minimum 8 Characters 
+            if(pwdRegex.test(pwd.value))
+                pwdError.textContent = "";
+            else
+                pwdError.textContent = "Minimum 8 characters";                  //print error message if regex test is failed
         });
 
         const salary = document.querySelector('#salary');
