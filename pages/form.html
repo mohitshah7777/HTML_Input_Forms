@@ -89,10 +89,14 @@
                 telError.textContent = "Contact number is Incorrect";              //print error message if regex test is failed
         });
 
-        const pwd = document.querySelector('#pwd');                             //UC-4 Validation for password
+        const pwd = document.querySelector('#pwd');                             //UC-4 & 5 Validation for password
         const pwdError = document.querySelector('.pwd-error');
         pwd.addEventListener('input',function() {
-            let pwdRegex = RegExp('(?=.*\d)(?=.*[a-z]).{8,}');                  //Rule1 – minimum 8 Characters 
+            let pwdRegex = RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$');        	
+            //Rule1– minimum 8 Characters
+	        //Rule2- Atleast 1 Uppercase
+	        //Rule3- Atleast 1 numeric value
+	        //Rule4- Atleast 1 special character   
             if(pwdRegex.test(pwd.value))
                 pwdError.textContent = "";
             else
