@@ -36,6 +36,7 @@
         <div>
             <label for="tel">Tel input type:</label>
             <input type="tel" id="tel" name="tel">
+            <error-output class="tel-error" for="tel"></error-output>
         </div>
         <div>
             <label for="search">Search input type:</label>
@@ -75,6 +76,16 @@
                 emailError.textContent = "";
             else
                 emailError.textContent = "Email is Incorrect";              //print error message if regex test is failed
+        });
+
+        const tel = document.querySelector('#tel');                              //UC-3 Validation for mobile number
+        const telError = document.querySelector('.tel-error');
+        tel.addEventListener('input',function() {
+            let telRegex = RegExp('^[0-9]{2}[ ][6-9]{1}[0-9]{9}$');              //Country code follow by space and 10 digit number 
+            if(telRegex.test(tel.value))
+                telError.textContent = "";
+            else
+                telError.textContent = "Contact number is Incorrect";              //print error message if regex test is failed
         });
 
         const salary = document.querySelector('#salary');
